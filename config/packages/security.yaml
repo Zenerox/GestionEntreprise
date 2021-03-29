@@ -1,7 +1,15 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -9,7 +17,7 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -20,5 +28,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # Différents rôles : ROLE_ADMIN, ROLE_STOCK, ROLE_RDV, ROLE_CLIENT
+        - { path: /, roles: ROLE_ADMIN }
+        - { path: ^/stock, roles: ROLE_STOCK }
+        - { path: ^/rdv, roles: ROLE_RDV }
+        - { path: ^/client, roles: ROLE_CLIENT }
+
+    role_hierarchy:
+        # ROLE_EDITOR: ROLE_USER        Le rôle editor hérite du rôle user
+        # ROLE_ADMIN: ROLE_EDITOR       Le rôle Admin hérite du rôle editor et donc également du rôle user
