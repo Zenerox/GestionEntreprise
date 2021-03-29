@@ -47,13 +47,13 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getLastname(): string
     {
         return $this->lastname;
     }
 
     /**
-     * @param string $nom
+     * @param string $lastname
      */
     public function setLastname($lastname): void
     {
