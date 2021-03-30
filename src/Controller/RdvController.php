@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RdvController extends AbstractController
 {
-    #[Route('/rdv', name: 'rdv')]
+    #[Route('/rdv', name: 'app_list_rdv')]
     public function index(): Response
     {
-        return $this->render('rdv/index.html.twig', [
+        return $this->render('rdv/list.html.twig', [
             'controller_name' => 'RdvController',
         ]);
     }

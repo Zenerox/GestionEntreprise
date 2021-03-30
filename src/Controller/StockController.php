@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StockController extends AbstractController
 {
-    #[Route('/stock', name: 'stock')]
+    #[Route('/stock', name: 'app_list_stock')]
     public function index(): Response
     {
-        return $this->render('stock/index.html.twig', [
+        return $this->render('stock/list.html.twig', [
             'controller_name' => 'StockController',
         ]);
     }

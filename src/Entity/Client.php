@@ -54,6 +54,11 @@ class Client
      */
     private $birth_date;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Rdv::class, mappedBy="Client", cascade={"persist", "remove"})
+     */
+    private $Date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,5 +127,22 @@ class Client
     public function getIdentity(): string
     {
         return $this->firstname . " " . $this->lastname;
+    }
+
+    public function getDate(): ?Rdv
+    {
+        return $this->Date;
+    }
+
+    public function setDate(Rdv $Date): self
+    {
+        // set the owning side of the relation if necessary
+        if ($Date->getClient() !== $this) {
+            $Date->setClient($this);
+        }
+
+        $this->Date = $Date;
+
+        return $this;
     }
 }
