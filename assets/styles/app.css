@@ -8,3 +8,20 @@ body {
     color: darkred;
     text-decoration: none;
 }
+
+.alert-success {
+    color: white;
+    background-color: green;
+}
+.alert-error {
+    color: white;
+    background-color: red;
+}
+.alert-info {
+    color: white;
+    background-color: blue;
+}
+.alert-danger {
+    color: white;
+    background-color: orange;
+}
