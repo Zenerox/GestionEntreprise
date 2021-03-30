@@ -4,3 +4,7 @@ body {
 .button {
     width: 100%;
 }
+.nav-logout {
+    color: darkred;
+    text-decoration: none;
+}

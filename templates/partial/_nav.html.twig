@@ -1,5 +1,5 @@
 {% if app.user %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ path('app_index') }}">Gestion Ma Boîte</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a {% if navStock is defined) %}
+                        <a {% if navStock is defined %}
                                 class="nav-link active" aria-current="page"
                             {% else %}
                                 class="nav-link"
@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a {% if navClient is defined) %}
+                        <a {% if navClient is defined %}
                                 class="nav-link active" aria-current="page"
                             {% else %}
                                 class="nav-link"
@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a {% if navRdv is defined) %}
+                        <a {% if navRdv is defined %}
                                 class="nav-link active" aria-current="page"
                             {% else %}
                                 class="nav-link"
@@ -36,6 +36,7 @@
                     </li>
                 </ul>
             </div>
+            <div><a class="nav-logout" href="{{ path('app_logout') }}">Se déconnecter</a></div>
         </div>
     </nav>
 {% endif %}
