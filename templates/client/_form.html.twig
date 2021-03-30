@@ -1,4 +1,20 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input class="btn btn-primary" type="submit" value="Enregistrer le client">
+    <fieldset class="mb-2">
+        {{ form_row(form.firstname) }}
+    </fieldset>
+    <fieldset class="mb-2">
+        {{ form_row(form.lastname) }}
+    </fieldset>
+    <fieldset class="mb-2">
+        {{ form_row(form.email) }}
+    </fieldset>
+    <fieldset class="mb-2">
+        {{ form_row(form.tel_number) }}
+    </fieldset>
+    <fieldset class="mb-2">
+        {{ form_row(form.birth_date) }}
+    </fieldset>
+    <div>
+        <input type="submit" class="btn btn-primary button" value="Enregistrer le client">
+    </div>
 {{ form_end(form) }}

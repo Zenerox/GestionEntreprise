@@ -36,7 +36,7 @@ class ClientController extends AbstractController
 
             $this->addFlash('success','Client créé avec succès');
 
-            $this->redirectToRoute('app_list_client');
+            return $this->redirectToRoute('app_list_client');
         }
 
         return $this->render('client/create.html.twig', [
