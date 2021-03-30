@@ -13,7 +13,7 @@
                             {% else %}
                                 class="nav-link"
                             {% endif %}
-                            href="#">Gestion du stock
+                            href="{{ path('app_list_stock') }}">Gestion du stock
                         </a>
                     </li>
                     <li class="nav-item">
@@ -22,7 +22,7 @@
                             {% else %}
                                 class="nav-link"
                             {% endif %}
-                            href="#">Gestion des clients
+                            href="{{ path('app_list_client') }}">Gestion des clients
                         </a>
                     </li>
                     <li class="nav-item">
@@ -31,7 +31,7 @@
                             {% else %}
                                 class="nav-link"
                             {% endif %}
-                            href="#">Gestion des rendez-vous
+                            href="{{ path('app_list_rdv') }}">Gestion des rendez-vous
                         </a>
                     </li>
                 </ul>
