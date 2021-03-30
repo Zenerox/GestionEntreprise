@@ -16,7 +16,8 @@
     </head>
     <body>
 
-        {{ include('partial/nav.html.twig') }}
+        {{ include('partial/_nav.html.twig') }}
+        {{ include('partial/_flash_messages.html.twig') }}
 
         <div class="container">
             {% block body %}{% endblock %}

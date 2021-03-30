@@ -1,0 +1,41 @@
+{% if app.user %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('app_index') }}">Gestion Ma Boîte</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a {% if navStock is defined) %}
+                                class="nav-link active" aria-current="page"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                            href="#">Gestion du stock
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a {% if navClient is defined) %}
+                                class="nav-link active" aria-current="page"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                            href="#">Gestion des clients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a {% if navRdv is defined) %}
+                                class="nav-link active" aria-current="page"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                            href="#">Gestion des rendez-vous
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endif %}
