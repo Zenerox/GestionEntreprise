@@ -22,7 +22,7 @@ class Rdv
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Client::class, inversedBy="Date", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="Date", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $Client;

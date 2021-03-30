@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -55,9 +57,14 @@ class Client
     private $birth_date;
 
     /**
-     * @ORM\OneToOne(targetEntity=Rdv::class, mappedBy="Client", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Rdv::class, mappedBy="Client", cascade={"persist", "remove"})
      */
-    private $Date;
+    private $rdvs;
+
+    public function __construct()
+    {
+        $this->rdvs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -129,19 +136,30 @@ class Client
         return $this->firstname . " " . $this->lastname;
     }
 
-    public function getDate(): ?Rdv
+    public function getRdvs(): Collection
     {
-        return $this->Date;
+        return $this->rdvs;
     }
 
-    public function setDate(Rdv $Date): self
+    public function addRdv(Rdv $rdv): self
     {
-        // set the owning side of the relation if necessary
-        if ($Date->getClient() !== $this) {
-            $Date->setClient($this);
+        if (!$this->rdvs->contains($rdv)) {
+            $this->rdvs[] = $rdv;
+            $rdv->setClient($this);
         }
 
-        $this->Date = $Date;
+        return $this;
+    }
+
+    public function removeRdv(Rdv $rdv): self
+    {
+        if ($this->rdvs->contains($rdv)) {
+            $this->rdvs->removeElement($rdv);
+            // set the owning side to null (unless already changed)
+            if ($rdv->getClient() === $this) {
+                $rdv->setClient(null);
+            }
+        }
 
         return $this;
     }
