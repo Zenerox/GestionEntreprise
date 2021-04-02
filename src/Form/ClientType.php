@@ -9,6 +9,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ClientType extends AbstractType
 {
@@ -19,31 +21,71 @@ class ClientType extends AbstractType
                 'label' => 'Prénom',
                 'attr' => [
                     'class' => 'form-group form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le prénom est obligatoire'
+                    ])
                 ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom de famille',
                 'attr' => [
                     'class' => 'form-group form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le nom est obligatoire'
+                    ])
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label' => "Adresse e-mail",
                 'attr' => [
                     'class' => 'form-group form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "L'adresse e-mail est obligatoire"
+                    ])
                 ]
             ])
-            ->add('tel_number', TextType::class, [
+            ->add('telNumber', TextType::class, [
                 'label' => 'Numéro(s) de téléphone de contact',
                 'attr' => [
                     'class' => 'form-group form-control'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Un numéro de contact est obligatoire'
+                    ])
                 ]
             ])
-            ->add('birth_date', BirthdayType::class, [
-                'label' => 'Date de naissance',
+            ->add('ville', TextType::class, [
+                'label' => 'Ville',
                 'attr' => [
                     'class' => 'form-group form-control'
                 ]
+            ])
+            ->add('codePostal', TextType::class, [
+                'label' => 'Code postal',
+                'attr' => [
+                    'class' => 'form-group form-control'
+                ],
+                'constraints' => [
+                    new length ([
+                        'min' => 5,
+                        'max' => 5,
+                        'exactMessage' => 'Le code postal doit comporter 5 chiffres'
+                    ])
+                ]
+            ])
+            ->add('birthDate', BirthdayType::class, [
+                'label' => 'Date de naissance',
+                'attr' => [
+                    'class' => 'form-group form-control'
+                ],
+                'widget' => 'single_text'
             ])
         ;
     }

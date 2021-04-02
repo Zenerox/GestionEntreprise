@@ -48,18 +48,28 @@ class Client
      * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(message="Merci de saisir un numéro de contact")
      */
-    private $tel_number;
+    private $telNumber;
 
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank(message="Merci de saisir une date de naissance")
      */
-    private $birth_date;
+    private $birthDate;
 
     /**
      * @ORM\OneToMany(targetEntity=Rdv::class, mappedBy="Client", cascade={"persist", "remove"})
      */
     private $rdvs;
+
+    /**
+     * @ORM\Column(type="string", length=75)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    private $codePostal;
 
     public function __construct()
     {
@@ -109,24 +119,24 @@ class Client
 
     public function getTelNumber(): ?string
     {
-        return $this->tel_number;
+        return $this->telNumber;
     }
 
-    public function setTelNumber(string $tel_number): self
+    public function setTelNumber(string $telNumber): self
     {
-        $this->tel_number = $tel_number;
+        $this->telNumber = $telNumber;
 
         return $this;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
     {
-        return $this->birth_date;
+        return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeInterface $birth_date): self
+    public function setBirthDate(\DateTimeInterface $birthDate): self
     {
-        $this->birth_date = $birth_date;
+        $this->birthDate = $birthDate;
 
         return $this;
     }
@@ -160,6 +170,30 @@ class Client
                 $rdv->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?string
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal(string $codePostal): self
+    {
+        $this->codePostal = $codePostal;
 
         return $this;
     }
