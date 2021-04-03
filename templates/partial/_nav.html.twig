@@ -33,13 +33,20 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a {% if navRdv is defined %}
+                        {#<a {% if navRdv is defined %}
                                 class="nav-link active" aria-current="page"
                             {% else %}
                                 class="nav-link"
                             {% endif %}
                             href="{{ path('app_list_rdv') }}">Gestion des rendez-vous
+                        </a>#}
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestion des Rdv
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ path('app_planning_rdv') }}">Planning</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_create_rdv') }}">Ajouter un rdv</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
