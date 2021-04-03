@@ -45,4 +45,10 @@ class ClientController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    #[Route('/{id<[0-9]+>}/delete', name:'app_delete_client')]
+    public function delete (Client $client, Request $request, EntityManagerInterface $em)
+    {
+
+    }
 }
