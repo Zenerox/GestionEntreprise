@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Form\ClientType;
+use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClientController extends AbstractController
 {
     #[Route('/', name: 'app_list_client')]
-    public function index(): Response
+    public function index(ClientRepository $repo): Response
     {
+        $list = $repo->findAll();
         return $this->render('client/list.html.twig', [
-            'controller_name' => 'ClientController',
+            'list' => $list,
         ]);
     }
 
