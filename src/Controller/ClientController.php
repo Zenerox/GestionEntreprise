@@ -49,6 +49,36 @@ class ClientController extends AbstractController
     #[Route('/{id<[0-9]+>}/delete', name:'app_delete_client')]
     public function delete (Client $client, Request $request, EntityManagerInterface $em)
     {
+        if($this->isCsrfTokenValid('client_deletion_'.$client->getId(),
+            $request->get('crsf_token'))) {
+            $em->remove($client);
+            $em->flush();
 
+            $this->addFlash('success', 'Client(e) supprimé(e)');
+        }
+
+        return $this->redirectToRoute('app_list_client');
+    }
+
+    #[Route('/{id<[0-9]+>}/modify', name:'app_modify_client')]
+    public function modify (Client $client, Request $request, EntityManagerInterface $em){
+        $form = $this->createForm(ClientType::class, $client);
+
+        $form->handleRequest($request);
+
+        if ( $form->isSubmitted() && $form->isValid()){
+            // si le formulaire envoyé est valide, on crée le nouveau client
+            $em->persist($client);
+            $em->flush();
+
+            $this->addFlash('success','Client(e) modifié(e) avec succès');
+
+            return $this->redirectToRoute('app_list_client');
+        }
+
+        return $this->render('client/modify.html.twig', [
+            'form' => $form->createView(),
+            'client' => $client
+        ]);
     }
 }

@@ -18,18 +18,26 @@
         <div class="col-md-5">
             <div class="row">
                 <p class="text-center">
+                    <a href="{{ path('app_modify_client', {id:client.id}) }}" class="btn btn-success">
+                        Modification
+                    </a>
                     <button class="btn btn-warning">
                         Historique
                     </button>
                     <button class="btn btn-secondary">
                         Contacter par mail
                     </button>
-                    <a href="{{ path('app_delete_client', {id: client.id}) }}" class="btn btn-secondary">
+                    <a class="btn btn-danger" href="#" onclick="event.preventDefault();
+                        confirm('Êtes-vous sûr(e) de vouloir supprimer ce(tte) client(e)?') && document.getElementById('client-delete-form').submit();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                         </svg>
                     </a>
+                    <form id="client-delete-form" action="{{ path('app_delete_client', {id: client.id}) }}" method="post" style="display:none;">
+                        <input type="hidden" name="crsf_token" value="{{ csrf_token('client_deletion_' ~ client.id) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                    </form>
                 </p>
             </div>
         </div>
