@@ -30,7 +30,12 @@ class Rdv
     /**
      * @ORM\Column(type="datetime")
      */
-    private $Date;
+    private $dateDebut;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateFin;
 
     public function getId(): ?int
     {
@@ -49,14 +54,26 @@ class Rdv
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDateDebut(): ?\DateTimeInterface
     {
-        return $this->Date;
+        return $this->dateDebut;
     }
 
-    public function setDate(\DateTimeInterface $Date): self
+    public function setDateDebut(\DateTimeInterface $dateDebut): self
     {
-        $this->Date = $Date;
+        $this->dateDebut = $dateDebut;
+
+        return $this;
+    }
+
+    public function getDateFin(): ?\DateTimeInterface
+    {
+        return $this->dateFin;
+    }
+
+    public function setDateFin(\DateTimeInterface $dateFin): self
+    {
+        $this->dateFin = $dateFin;
 
         return $this;
     }
