@@ -2,6 +2,63 @@
 
 {% block title %}Accueil{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (e) => {
+
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                defaultView: 'dayGridMonth',
+                locale:'fr',
+                editable: true,
+                eventSources: [
+                    {
+                        url: "/fc-load-events",
+                        method: "POST",
+                        extraParams: {
+                            filters: JSON.stringify({})
+                        },
+                        failure: () => {
+                            // alert("There was an error while fetching FullCalendar!");
+                        },
+                    },
+                ],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
+                timeZone: 'Europe/Paris',
+                buttonText: {
+                    'today': "Aujourd'hui",
+                    'month': 'Mois',
+                    'week': 'Semaine',
+                    'day':'Jour'
+                },
+                weekNumbers:true,
+                nowIndicator:true,
+                firstDay:1
+            });
+
+            calendar.render();
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
-    hgvijkdxfghjsdijhfojshdfojhsxj sdfhj hsjf hjshfjslfhlshfhsjlfhjlshflsh
+    <h3>Liste des rendez-vous</h3>
+    <div id="calendar"></div>
+
 {% endblock %}

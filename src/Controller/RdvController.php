@@ -9,12 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/rdv')]
 class RdvController extends AbstractController
 {
-    #[Route('/planning', name: 'app_planning_rdv')]
+    #[Route('/create', name: 'app_create_rdv')]
     public function planning(): Response
     {
-        return $this->render('rdv/planning.html.twig', [
-            'controller_name' => 'RdvController',
-        ]);
+        return $this->render('rdv/create.html.twig');
     }
 
 }

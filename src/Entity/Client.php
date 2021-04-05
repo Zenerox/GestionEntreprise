@@ -38,21 +38,18 @@ class Client
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=75, unique=true)
-     * @Assert\NotBlank(message="Merci de saisir une adresse mail")
+     * @ORM\Column(type="string", length=75, unique=true, nullable=true)
      * @Assert\Email(message="Merci de saisir une adresse valide")
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank(message="Merci de saisir un numéro de contact")
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $telNumber;
 
     /**
-     * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="Merci de saisir une date de naissance")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $birthDate;
 
@@ -62,12 +59,12 @@ class Client
     private $rdvs;
 
     /**
-     * @ORM\Column(type="string", length=75)
+     * @ORM\Column(type="string", length=75, nullable=true)
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=5, nullable=true)
      */
     private $codePostal;
 
