@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau rdv{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h3>Nouveau rdv pour {{ client.firstname ~ ' ' ~ client.lastname }}</h3>
+            {{ form_start(form) }}
+                <div class="mt-3">
+                    {{ form_row(form.date) }}
+                </div>
+                <div class="mt-2">
+                    {{ form_row(form.heureDebut) }}
+                </div>
+                <div class="mt-2">
+                    {{ form_row(form.heureFin) }}
+                </div>
+                <div class="mt-3">
+                    {{ form_row(form.submit) }}
+                </div>
+                <input type="hidden" name="client" value="{{ client.id }}">
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

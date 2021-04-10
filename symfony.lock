@@ -1,4 +1,10 @@
 {
+    "components/bootstrap": {
+        "version": "3.4.1"
+    },
+    "components/jquery": {
+        "version": "3.5.1"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
@@ -85,8 +91,14 @@
     "egulias/email-validator": {
         "version": "3.1.0"
     },
+    "eternicode/bootstrap-datepicker": {
+        "version": "v1.9.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
+    },
+    "kriswallsmith/assetic": {
+        "version": "v1.0.5"
     },
     "laminas/laminas-code": {
         "version": "4.1.0"
@@ -129,6 +141,9 @@
     },
     "psy/psysh": {
         "version": "v0.10.7"
+    },
+    "robloach/component-installer": {
+        "version": "0.0.12"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",

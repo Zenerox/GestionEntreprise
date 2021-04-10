@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-5">
             <div class="row">
-                <p class="text-center">
+                <div class="text-center">
                     <a href="{{ path('app_modify_client', {id:client.id}) }}" class="btn btn-success">
                         Modification
                     </a>
@@ -38,7 +38,16 @@
                         <input type="hidden" name="crsf_token" value="{{ csrf_token('client_deletion_' ~ client.id) }}">
                         <input type="hidden" name="_method" value="DELETE">
                     </form>
-                </p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-6 mx-auto">
+                    <div class="text-center">
+                        <a href="{{ path('app_create_rdv', {id:client.id}) }}" class="btn btn-success btn-">
+                            Nouveau rdv
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
