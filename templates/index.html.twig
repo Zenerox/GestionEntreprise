@@ -9,31 +9,21 @@
 {% endblock %}
 
 {% block javascripts %}
+
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (e) => {
+        window.onload = (e) => {
 
-            var calendarEl = document.getElementById('calendar');
+            let calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            let calendar = new FullCalendar.Calendar(calendarEl, {
                 defaultView: 'dayGridMonth',
                 locale:'fr',
                 editable: true,
-                eventSources: [
-                    {
-                        url: "/fc-load-events",
-                        method: "POST",
-                        extraParams: {
-                            filters: JSON.stringify({})
-                        },
-                        failure: () => {
-                            // alert("There was an error while fetching FullCalendar!");
-                        },
-                    },
-                ],
+                eventResizableFromStart: true,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -49,11 +39,16 @@
                 },
                 weekNumbers:true,
                 nowIndicator:true,
-                firstDay:1
+                firstDay:1,
+                events: {{ data|raw }}
+            });
+
+            calendar.on('eventChange', (ev) => {
+                alert('jnlonipom');
             });
 
             calendar.render();
-        });
+        };
     </script>
 {% endblock %}
 
